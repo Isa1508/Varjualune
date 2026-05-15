@@ -157,7 +157,7 @@
   <line x1="860" y1="101" x2="860" y2="490" stroke="#333" stroke-width="1"/>
   <line x1="853" y1="101" x2="867" y2="101" stroke="#333" stroke-width="1.5"/>
   <line x1="853" y1="490" x2="867" y2="490" stroke="#333" stroke-width="1.5"/>
-  <text x="878" y="299" text-anchor="middle" font-size="11" fill="#333" transform="rotate(90,878,299)"></text>
+  <text x="878" y="299" text-anchor="middle" font-size="11" fill="#333" transform="rotate(90,878,299)">4,74 m</text>
 
   <!-- === SPACING ANNOTATIONS === -->
   <line x1="166" y1="580" x2="781" y2="580" stroke="#666" stroke-width="0.8"/>
