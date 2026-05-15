@@ -174,6 +174,81 @@ makeBox(OTSPALK_W, 0.15, 0.15, woodMat,
 makeBox(WIDTH, 0.15, 0.15, woodMat,
   0, EAVE_H + 0.075, REAR_Z);
 
+// === KOPFBÄNDER ===
+// Schenkellänge 0.80m, 45°
+// Pfosten-Ansatz: 0.80m unterhalb Traufe → y_start = EAVE_H - 0.80
+// Traufbalken-Ansatz: 0.80m horizontal vom Pfosten entfernt
+// Kopfband-Mitte: x/z midpoint, y midpoint
+// Breite/Höhe des Querschnitts: 0.12m
+const kopfMat = new THREE.MeshLambertMaterial({ color: 0x7a4f28 });
+const KB = 0.80;  // Schenkellänge
+const KB_LEN = KB * Math.sqrt(2);  // diagonale Länge = 1.131m
+const KB_THK = 0.12;  // Querschnitt
+const KB_Y_POST = EAVE_H - KB;    // y where kopfband meets post = 2.50
+const KB_Y_MID = EAVE_H - KB/2;  // y center = 2.90
+const ANG45 = Math.PI / 4;
+
+// Helper: make a kopfband along Z axis (for side beams)
+// px=post x, pz=post z, dir=+1 forward or -1 backward
+function makeKBside(px, pz, dir) {
+  const kb = makeBox(KB_THK, KB_LEN, KB_THK, kopfMat,
+    px,
+    KB_Y_MID,
+    pz + dir * KB/2);
+  kb.rotation.x = dir * ANG45;
+  return kb;
+}
+
+// Helper: make a kopfband along X axis (for rear cross beam)
+// px=post x center, pz=post z, dir=+1 rightward or -1 leftward
+function makeKBrear(px, pz, dir) {
+  const kb = makeBox(KB_LEN, KB_THK, KB_THK, kopfMat,
+    px + dir * KB/2,
+    KB_Y_MID,
+    pz);
+  kb.rotation.z = dir * ANG45;
+  return kb;
+}
+
+// SIDE kopfbänder along length (Z axis)
+// Posts at zOffset + postZPositions[i], x = left or right
+const lx = xOffset + POST_W/2;           // left post x center
+const rx = xOffset + WIDTH - POST_W/2;   // right post x center
+
+for (let i = 0; i < postZPositions.length; i++) {
+  const pz = zOffset + postZPositions[i];
+  // Rear post (i=0): kopfband toward front (+z)
+  // Front post (i=3): kopfband toward rear (-z) only (no front KB due to Otsapalk)
+  // Middle posts (i=1,2): kopfbands both directions
+  if (i === 0 || i === 1 || i === 2) {
+    makeKBside(lx, pz, +1);  // toward front
+    makeKBside(rx, pz, +1);
+  }
+  if (i === 1 || i === 2 || i === 3) {
+    makeKBside(lx, pz, -1);  // toward rear
+    makeKBside(rx, pz, -1);
+  }
+}
+
+// REAR kopfbänder along width (X axis), at REAR_POST_Z
+const rpz = REAR_POST_Z;
+const rearXs = [
+  xOffset + POST_W/2,
+  xOffset + WIDTH * 1/3,
+  xOffset + WIDTH * 2/3,
+  xOffset + WIDTH - POST_W/2
+];
+// Leftmost: only rightward (+x)
+makeKBrear(rearXs[0], rpz, +1);
+// Mid-left: both
+makeKBrear(rearXs[1], rpz, -1);
+makeKBrear(rearXs[1], rpz, +1);
+// Mid-right: both
+makeKBrear(rearXs[2], rpz, -1);
+makeKBrear(rearXs[2], rpz, +1);
+// Rightmost: only leftward (-x)
+makeKBrear(rearXs[3], rpz, -1);
+
 // === PURLINS (Pfetten along length, supporting roof) ===
 makeBox(0.12, 0.15, LENGTH + 2*OVERHANG, woodMat,
   0, RIDGE_H + 0.075, 0);
@@ -204,14 +279,16 @@ const rafterCenterY = EAVE_H + roofRise / 2;
 const roofLift = rafterH * 0.8;
 
 // === RAFTERS ===
+// Shorten slightly so rafters don't protrude below trauf beam
 const rafterMat = new THREE.MeshLambertMaterial({ color: 0x7a4f28 });
 const numRafters = 9;
+const slopeLenRafter = slopeLen - 0.25; // trim 25cm so eave end stays above trauf beam
 for (let i = 0; i <= numRafters; i++) {
   const z = zOffset - OVERHANG + (i / numRafters) * roofDepth;
-  const lr = makeBox(slopeLen, rafterH, 0.10, rafterMat,
+  const lr = makeBox(slopeLenRafter, rafterH, 0.10, rafterMat,
     xOffset + halfW/2, rafterCenterY, z);
   lr.rotation.z = slopeAngle;
-  const rr = makeBox(slopeLen, rafterH, 0.10, rafterMat,
+  const rr = makeBox(slopeLenRafter, rafterH, 0.10, rafterMat,
     xOffset + WIDTH - halfW/2, rafterCenterY, z);
   rr.rotation.z = -slopeAngle;
 }
