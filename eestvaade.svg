@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 640" width="1250" height="640" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1250" height="640" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">VARJUALUNE – EESTVAADE</text>
+  <text x="500" y="48" text-anchor="middle" font-size="11" fill="#555">Valguslaius 7,50 m | Räästakõrgus 3,30 m | Otspalk 3,80 m | Harjakõrgus 4,74 m | Katuse kalle 21° | Pikkus 8,50 m | Puit + Eterniit (katus)</text>
+
+  <!--
+    Scale: 1m = 82px. Ground y=490.
+    Traufe:      3,30m = 271px → y=219
+    Stirnbalken: 3,80m = 312px → y=178
+    First:       4,74m = 389px → y=101
+    Posts outer left x=150 w=16, inner x=166
+    Posts outer right inner x=781, outer x=797
+    Inner width: 7,50m = 615px
+    Spacings:
+      left gap:  98px (1,20m) → WoMo left x=264
+      WoMo:     197px (2,40m) → WoMo right x=461
+      middle:    90px (1,10m) → Jeep left x=551
+      Jeep:     152px (1,85m) → Jeep right x=703
+      right gap: 78px (0,95m) → x=781
+    WoMo height: 3,40m=279px → top y=490-279=211
+    Jeep height: 1,65m=135px → top y=355
+    Ridge center x=473
+  -->
+
+  <!-- Ground -->
+  <rect x="8" y="490" width="1234" height="15" fill="#c8b89a"/>
+  <line x1="8" y1="490" x2="1242" y2="490" stroke="#888" stroke-width="1.5"/>
+
+  <!-- === ABWASSER: 1,20m links vom Pfosten, B=0,60m, H=0,30m ===
+    Rechte Kante: x=150-98=52, Linke Kante: x=52-49=3
+    Top: y=490-25=465
+  -->
+  <rect x="18" y="465" width="49" height="25" fill="#d0d0d0" stroke="#666" stroke-width="1.5"/>
+  <text x="42" y="459" text-anchor="middle" font-size="9" fill="#555">Septik</text>
+  <text x="42" y="510" text-anchor="middle" font-size="9" fill="#666">0,60×0,30m</text>
+  <!-- Abstand-Pfeil Abwasser → Pfosten -->
+  <line x1="67" y1="505" x2="150" y2="505" stroke="#999" stroke-width="0.8"/>
+  <line x1="67" y1="500" x2="67" y2="510" stroke="#999" stroke-width="1"/>
+  <line x1="150" y1="500" x2="150" y2="510" stroke="#999" stroke-width="1"/>
+  <text x="108" y="520" text-anchor="middle" font-size="9" fill="#999">1,20 m</text>
+
+  <!-- === HOLZUNTERSTAND: 1,50m rechts vom Pfosten, B=3,00m, H=3,00m ===
+    Linke Kante: x=797+123=920, Rechte Kante: x=920+246=1166
+    Top: y=490-246=244
+  -->
+  <rect x="920" y="244" width="246" height="246" fill="#e8d8b0" stroke="#8B6914" stroke-width="2"/>
+  <!-- Flachdach mit 35cm=29px Überstand links und rechts -->
+  <rect x="891" y="236" width="304" height="10" fill="#a07820" stroke="#5a4010" stroke-width="1.5"/>
+  <text x="1043" y="362" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a4a10">Puitukuur</text>
+  <text x="1043" y="378" text-anchor="middle" font-size="10" fill="#6a4a10">B 3,00 m | H 3,00 m</text>
+  <!-- Überstand-Bemaßung links -->
+  <line x1="891" y1="225" x2="920" y2="225" stroke="#888" stroke-width="0.8"/>
+  <line x1="891" y1="220" x2="891" y2="230" stroke="#888" stroke-width="1"/>
+  <line x1="920" y1="220" x2="920" y2="230" stroke="#888" stroke-width="1"/>
+  <text x="905" y="218" text-anchor="middle" font-size="9" fill="#888">0,35 m</text>
+  <!-- Überstand-Bemaßung rechts -->
+  <line x1="1166" y1="225" x2="1195" y2="225" stroke="#888" stroke-width="0.8"/>
+  <line x1="1166" y1="220" x2="1166" y2="230" stroke="#888" stroke-width="1"/>
+  <line x1="1195" y1="220" x2="1195" y2="230" stroke="#888" stroke-width="1"/>
+  <text x="1180" y="218" text-anchor="middle" font-size="9" fill="#888">0,35 m</text>
+  <!-- Abstand-Pfeil Pfosten → Unterstand -->
+  <line x1="797" y1="525" x2="920" y2="525" stroke="#999" stroke-width="0.8"/>
+  <line x1="797" y1="520" x2="797" y2="530" stroke="#999" stroke-width="1"/>
+  <line x1="920" y1="520" x2="920" y2="530" stroke="#999" stroke-width="1"/>
+  <text x="858" y="540" text-anchor="middle" font-size="9" fill="#999">1,50 m</text>
+
+  <!-- === POSTS === -->
+  <rect x="150" y="219" width="16" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+  <rect x="781" y="219" width="16" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+  <!-- 2 middle posts -->
+  <rect x="354" y="219" width="13" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.2"/>
+  <rect x="604" y="219" width="13" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.2"/>
+
+  <!-- === ROOF ===
+    Stützen: links x=150..166, rechts x=781..797
+    Traufe auf Stützen (Außenkante): links x=150, rechts x=797, y=219
+    Überstand 30cm=25px: links x=125, rechts x=822, y=229 (10px tiefer)
+    First: x=473, y=101 (Oberkante y=91)
+  -->
+  <!-- Left panel: Überstandskante unten-links → Traufe links → First oben → First oben (Oberkante) → Überstandskante oben-links -->
+  <polygon points="125,229 150,219 473,101 473,91 125,219" fill="#b03020" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Right panel -->
+  <polygon points="473,101 797,219 822,229 822,219 473,91" fill="#952818" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Ridge cap -->
+  <rect x="467" y="91" width="12" height="13" fill="#7a1a08"/>
+  <!-- Trauf beam on posts: x=150 to x=797 -->
+  <rect x="150" y="214" width="647" height="8" fill="#a07820" stroke="#5a4010" stroke-width="1"/>
+  <!-- Overhang dimension left -->
+  <line x1="125" y1="248" x2="150" y2="248" stroke="#888" stroke-width="0.8"/>
+  <line x1="125" y1="243" x2="125" y2="253" stroke="#888" stroke-width="1"/>
+  <line x1="150" y1="243" x2="150" y2="253" stroke="#888" stroke-width="1"/>
+  <text x="137" y="264" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+  <!-- Overhang dimension right -->
+  <line x1="797" y1="248" x2="822" y2="248" stroke="#888" stroke-width="0.8"/>
+  <line x1="797" y1="243" x2="797" y2="253" stroke="#888" stroke-width="1"/>
+  <line x1="822" y1="243" x2="822" y2="253" stroke="#888" stroke-width="1"/>
+  <text x="809" y="264" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+
+  <!-- === STIRNBALKEN bei y=178 (3,80m), bündig unter Dachschräge ===
+    Dachschräge links bei y=178: x = 150 + (219-178)/(219-101) * (473-150) = 150 + 41/118 * 323 = 150+112 = 262
+    Dachschräge rechts bei y=178: x = 797 - 112 = 685
+    Breite = 685-262 = 423px = 5,16m
+  -->
+  <rect x="262" y="174" width="423" height="10" rx="1" fill="#c08828" stroke="#7a5010" stroke-width="1.5"/>
+  <text x="473" y="169" text-anchor="middle" font-size="10" fill="#7a5010">Otspalk (K 3,80 m | L 5,16 m)</text>
+
+  <!-- === WOHNMOBIL BOX === -->
+  <!-- H=3,40m=279px → top y=490-279=211 -->
+  <rect x="264" y="211" width="197" height="279" fill="#dce8f5" stroke="#3a6a9a" stroke-width="2"/>
+  <text x="362" y="343" text-anchor="middle" font-size="13" font-weight="bold" fill="#2a5a80">Matkaauto</text>
+  <text x="362" y="361" text-anchor="middle" font-size="11" fill="#2a5a80">B 2,40 m</text>
+  <text x="362" y="377" text-anchor="middle" font-size="11" fill="#2a5a80">H 3,40 m</text>
+
+  <!-- WoMo height arrow -->
+  <line x1="248" y1="211" x2="248" y2="490" stroke="#3a6a9a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="242" y1="211" x2="254" y2="211" stroke="#3a6a9a" stroke-width="1.5"/>
+  <line x1="242" y1="490" x2="254" y2="490" stroke="#3a6a9a" stroke-width="1.5"/>
+  <text x="234" y="354" text-anchor="middle" font-size="10" fill="#3a6a9a" transform="rotate(-90,234,354)">3,40 m</text>
+
+  <!-- === JEEP BOX === -->
+  <rect x="551" y="355" width="152" height="135" fill="#e8e0d0" stroke="#7a5a20" stroke-width="2"/>
+  <text x="627" y="416" text-anchor="middle" font-size="13" font-weight="bold" fill="#5a3a10">Jeep Compass</text>
+  <text x="627" y="434" text-anchor="middle" font-size="11" fill="#5a3a10">B 1,85 m</text>
+  <text x="627" y="450" text-anchor="middle" font-size="11" fill="#5a3a10">H 1,65 m</text>
+
+  <!-- === DIMENSION LINES === -->
+
+  <!-- Outer width -->
+  <line x1="150" y1="535" x2="797" y2="535" stroke="#333" stroke-width="1"/>
+  <line x1="150" y1="528" x2="150" y2="542" stroke="#333" stroke-width="1.5"/>
+  <line x1="797" y1="528" x2="797" y2="542" stroke="#333" stroke-width="1.5"/>
+  <text x="473" y="552" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">ca. 7,80 m (välismõõt)</text>
+
+  <!-- Inner clear width -->
+  <line x1="166" y1="515" x2="781" y2="515" stroke="#555" stroke-width="1"/>
+  <line x1="166" y1="508" x2="166" y2="522" stroke="#555" stroke-width="1.5"/>
+  <line x1="781" y1="508" x2="781" y2="522" stroke="#555" stroke-width="1.5"/>
+  <text x="473" y="530" text-anchor="middle" font-size="11" fill="#555">7,50 m (valguslaius)</text>
+
+  <!-- Traufhöhe left -->
+  <line x1="108" y1="219" x2="108" y2="490" stroke="#333" stroke-width="1"/>
+  <line x1="101" y1="219" x2="115" y2="219" stroke="#333" stroke-width="1.5"/>
+  <line x1="101" y1="490" x2="115" y2="490" stroke="#333" stroke-width="1.5"/>
+  <text x="94" y="358" text-anchor="middle" font-size="11" fill="#333" transform="rotate(-90,94,358)">3,30 m (räästas)</text>
+
+  <!-- Stirnbalken height -->
+  <line x1="820" y1="178" x2="820" y2="490" stroke="#7a5010" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="813" y1="178" x2="827" y2="178" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="813" y1="490" x2="827" y2="490" stroke="#7a5010" stroke-width="1.5"/>
+  <text x="838" y="338" text-anchor="middle" font-size="10" fill="#7a5010" transform="rotate(90,838,338)">3,80 m (otspalk)</text>
+
+  <!-- Firsthöhe -->
+  <line x1="860" y1="101" x2="860" y2="490" stroke="#333" stroke-width="1"/>
+  <line x1="853" y1="101" x2="867" y2="101" stroke="#333" stroke-width="1.5"/>
+  <line x1="853" y1="490" x2="867" y2="490" stroke="#333" stroke-width="1.5"/>
+  <text x="878" y="299" text-anchor="middle" font-size="11" fill="#333" transform="rotate(90,878,299)">4,74 m (harja)</text>
+
+  <!-- === SPACING ANNOTATIONS === -->
+  <line x1="166" y1="580" x2="781" y2="580" stroke="#666" stroke-width="0.8"/>
+
+  <line x1="166" y1="573" x2="166" y2="587" stroke="#666" stroke-width="1"/>
+  <line x1="264" y1="573" x2="264" y2="587" stroke="#666" stroke-width="1"/>
+  <text x="215" y="600" text-anchor="middle" font-size="10" fill="#666">1,20 m</text>
+
+  <line x1="461" y1="573" x2="461" y2="587" stroke="#3a6a9a" stroke-width="1"/>
+  <text x="362" y="600" text-anchor="middle" font-size="10" font-weight="bold" fill="#3a6a9a">2,40 m</text>
+
+  <line x1="551" y1="573" x2="551" y2="587" stroke="#666" stroke-width="1"/>
+  <text x="506" y="600" text-anchor="middle" font-size="10" fill="#666">1,10 m</text>
+
+  <line x1="703" y1="573" x2="703" y2="587" stroke="#7a5a20" stroke-width="1"/>
+  <text x="627" y="600" text-anchor="middle" font-size="10" font-weight="bold" fill="#7a5a20">1,85 m</text>
+
+  <line x1="781" y1="573" x2="781" y2="587" stroke="#666" stroke-width="1"/>
+  <text x="742" y="600" text-anchor="middle" font-size="10" fill="#666">0,95 m</text>
+
+  <!-- Border -->
+  <rect x="8" y="8" width="1234" height="624" fill="none" stroke="#aaa" stroke-width="1.5"/>
+
+</svg>

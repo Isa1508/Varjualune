@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varjualune – 3D mudel</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+  #canvas { display: block; }
+  #info {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(0,0,0,0.65); color: #e0e0e0;
+    padding: 14px 18px; border-radius: 8px;
+    font-size: 13px; line-height: 1.7;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  #info h2 { color: #f0c060; font-size: 15px; margin-bottom: 6px; }
+  #info .dim { color: #aad4f5; }
+  #controls {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.65); color: #ccc;
+    padding: 10px 20px; border-radius: 8px; font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<div id="info">
+  <h2>🏗 Varjualune – 3D mudel</h2>
+  <span class="dim">Pikkus:</span> 8,50 m<br>
+  <span class="dim">Laius (valgus):</span> 7,50 m<br>
+  <span class="dim">Räästakõrgus:</span> 3,30 m<br>
+  <span class="dim">Harjakõrgus:</span> 4,74 m<br>
+  <span class="dim">Katuse kalle:</span> 21°<br>
+  <span class="dim">Materjal:</span> Puit + Eterniit
+</div>
+
+<div id="controls">🖱 Hiir: pööramine | Scroll: suurendus | Parema nupuga: liigutamine</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// === SCENE SETUP ===
+const canvas = document.getElementById('canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setPixelRatio(window.devicePixelRatio);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a1a2e);
+scene.fog = new THREE.Fog(0x1a1a2e, 40, 80);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(14, 8, 14);
+camera.lookAt(0, 2, 0);
+
+// === LIGHTS ===
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const sunLight = new THREE.DirectionalLight(0xfff5e0, 1.2);
+sunLight.position.set(10, 20, 10);
+sunLight.castShadow = true;
+sunLight.shadow.mapSize.width = 2048;
+sunLight.shadow.mapSize.height = 2048;
+sunLight.shadow.camera.near = 0.5;
+sunLight.shadow.camera.far = 80;
+sunLight.shadow.camera.left = -20;
+sunLight.shadow.camera.right = 20;
+sunLight.shadow.camera.top = 20;
+sunLight.shadow.camera.bottom = -20;
+scene.add(sunLight);
+
+const fillLight = new THREE.DirectionalLight(0xa0c0ff, 0.3);
+fillLight.position.set(-8, 5, -5);
+scene.add(fillLight);
+
+// === SCALE: 1m = 1 unit ===
+// Carport dimensions:
+const LENGTH = 8.50;   // Z axis
+const WIDTH  = 7.50;   // X axis (inner clear)
+const POST_W = 0.15;   // post cross-section
+const EAVE_H = 3.30;   // Räästakõrgus
+const RIDGE_H = 4.74;  // Harjakõrgus
+const OVERHANG = 0.30; // roof overhang all sides
+const POST_COUNT_L = 4; // posts per side along length
+
+// Materials
+const woodMat = new THREE.MeshLambertMaterial({ color: 0x8B5E3C });
+const darkWoodMat = new THREE.MeshLambertMaterial({ color: 0x5C3D1E });
+const roofMat = new THREE.MeshLambertMaterial({ color: 0x8B3A2A, side: THREE.DoubleSide });
+const groundMat = new THREE.MeshLambertMaterial({ color: 0x3d5c2a });
+const concreteMat = new THREE.MeshLambertMaterial({ color: 0x888880 });
+
+// === GROUND ===
+const groundGeo = new THREE.PlaneGeometry(50, 50);
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// === HELPER: make a box ===
+function makeBox(w, h, d, mat, x, y, z) {
+  const geo = new THREE.BoxGeometry(w, h, d);
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+  return mesh;
+}
+
+// === POSTS ===
+// 4 posts per side, 2 sides (left x=0, right x=WIDTH)
+// Length positions: outer faces at z=0 and z=LENGTH
+// Field spacing: (LENGTH - 4*POST_W) / 3 = (8.50 - 0.60) / 3 = 2.633m
+const fieldW = (LENGTH - 4 * POST_W) / 3;
+const postZPositions = [
+  POST_W / 2,
+  POST_W + fieldW + POST_W / 2,
+  POST_W + fieldW + POST_W + fieldW + POST_W / 2,
+  POST_W + fieldW + POST_W + fieldW + POST_W + fieldW + POST_W / 2
+];
+
+// Center everything: offset so carport is centered at origin
+const zOffset = -LENGTH / 2;
+const xOffset = -WIDTH / 2;
+
+for (let z of postZPositions) {
+  // Left side
+  makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+    xOffset + POST_W/2, EAVE_H/2, zOffset + z);
+  // Right side
+  makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+    xOffset + WIDTH - POST_W/2, EAVE_H/2, zOffset + z);
+}
+
+// Explicit rear posts (REAR_Z = negative Z side)
+const REAR_POST_Z = zOffset + POST_W/2;
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + POST_W/2, EAVE_H/2, REAR_POST_Z);
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH - POST_W/2, EAVE_H/2, REAR_POST_Z);
+// Two intermediate rear posts at 1/3 and 2/3 of width, same Z as corner posts
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH * 1/3, EAVE_H/2, REAR_POST_Z);
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH * 2/3, EAVE_H/2, REAR_POST_Z);
+
+// === TRAUF BEAMS (along length, on top of posts) ===
+// Left side
+makeBox(POST_W, 0.12, LENGTH, woodMat,
+  xOffset + POST_W/2, EAVE_H + 0.06, 0);
+// Right side
+makeBox(POST_W, 0.12, LENGTH, woodMat,
+  xOffset + WIDTH - POST_W/2, EAVE_H + 0.06, 0);
+
+// Vorne = positive Z (toward camera), hinten = negative Z
+const FRONT_Z = zOffset + LENGTH - POST_W/2;  // positive Z = front (toward camera)
+const REAR_Z  = zOffset + POST_W/2;           // negative Z = rear
+
+// === OTSPALK vorne (3,80m), Breite 5,16m, zentriert ===
+const OTSPALK_H = 3.80;
+const OTSPALK_W = 5.16;
+makeBox(OTSPALK_W, 0.15, 0.15, woodMat,
+  0, OTSPALK_H + 0.075, FRONT_Z);
+
+// === HINTERER Querbalken auf Traufhöhe, volle Breite ===
+makeBox(WIDTH, 0.15, 0.15, woodMat,
+  0, EAVE_H + 0.075, REAR_Z);
+
+// === PURLINS (Pfetten along length, supporting roof) ===
+makeBox(0.12, 0.15, LENGTH + 2*OVERHANG, woodMat,
+  0, RIDGE_H + 0.075, 0);
+
+const midPurlinH = EAVE_H + (RIDGE_H - EAVE_H) / 2;
+const midPurlinX = (WIDTH/2) * 0.5;
+makeBox(0.10, 0.12, LENGTH + 2*OVERHANG, woodMat,
+  xOffset + WIDTH/2 - midPurlinX, midPurlinH, 0);
+makeBox(0.10, 0.12, LENGTH + 2*OVERHANG, woodMat,
+  xOffset + WIDTH/2 + midPurlinX, midPurlinH, 0);
+
+// === GEOMETRY for roof/rafters ===
+// halfW extended by overhang (0.30m each side) for roof width
+const halfW = WIDTH / 2;
+const halfWRoof = halfW + OVERHANG; // roof extends 0.30m beyond posts on each side
+const roofRise = RIDGE_H - EAVE_H;
+// slopeLen for posts (rafters)
+const slopeLen = Math.sqrt(halfW * halfW + roofRise * roofRise);
+// slopeLen for roof panels (wider by overhang)
+const slopeLenRoof = Math.sqrt(halfWRoof * halfWRoof + roofRise * roofRise);
+const slopeAngle = Math.atan2(roofRise, halfW);
+const roofDepth = LENGTH + 2 * OVERHANG;
+const roofThick = 0.15;
+const rafterH = 0.18;
+const rafterCenterY = EAVE_H + roofRise / 2;
+
+// Lift roof in world Y by rafterH so it sits clearly above rafters
+const roofLift = rafterH * 0.8;
+
+// === RAFTERS ===
+const rafterMat = new THREE.MeshLambertMaterial({ color: 0x7a4f28 });
+const numRafters = 9;
+for (let i = 0; i <= numRafters; i++) {
+  const z = zOffset - OVERHANG + (i / numRafters) * roofDepth;
+  const lr = makeBox(slopeLen, rafterH, 0.10, rafterMat,
+    xOffset + halfW/2, rafterCenterY, z);
+  lr.rotation.z = slopeAngle;
+  const rr = makeBox(slopeLen, rafterH, 0.10, rafterMat,
+    xOffset + WIDTH - halfW/2, rafterCenterY, z);
+  rr.rotation.z = -slopeAngle;
+}
+
+// === ROOF PANELS: wider than rafters (include overhang) ===
+// Left panel center X: shifted OVERHANG/2 further left than rafter center
+const leftRoof = makeBox(slopeLenRoof + 0.02, roofThick, roofDepth, roofMat,
+  xOffset - OVERHANG/2 + halfWRoof/2,
+  rafterCenterY + roofLift,
+  0);
+leftRoof.rotation.z = slopeAngle;
+
+// Right panel center X: shifted OVERHANG/2 further right
+const rightRoof = makeBox(slopeLenRoof + 0.02, roofThick, roofDepth, roofMat,
+  xOffset + WIDTH + OVERHANG/2 - halfWRoof/2,
+  rafterCenterY + roofLift,
+  0);
+rightRoof.rotation.z = -slopeAngle;
+
+// === FOUNDATION PADS ===
+for (let z of postZPositions) {
+  makeBox(0.5, 0.1, 0.5, concreteMat,
+    xOffset + POST_W/2, 0.05, zOffset + z);
+  makeBox(0.5, 0.1, 0.5, concreteMat,
+    xOffset + WIDTH - POST_W/2, 0.05, zOffset + z);
+}
+// Foundation pads for intermediate rear posts
+const rearFndZ = zOffset + POST_W/2; // = -4.175
+makeBox(0.5, 0.1, 0.5, concreteMat, xOffset + WIDTH * 1/3, 0.05, rearFndZ);
+makeBox(0.5, 0.1, 0.5, concreteMat, xOffset + WIDTH * 2/3, 0.05, rearFndZ);
+
+// === VEHICLES (simple boxes) ===
+// Wohnmobil: B=2.40m, H=3.40m, L=8.00m
+// Centered left in carport
+const womoMat = new THREE.MeshLambertMaterial({ color: 0xddeeff });
+const womo = makeBox(2.40, 3.40, 8.00, womoMat,
+  xOffset + 1.20 + 1.20, 1.70, 0);
+// Label not possible in Three.js without extra lib, just show box
+
+// Jeep: B=1.85m, H=1.65m, L=4.50m
+const jeepMat = new THREE.MeshLambertMaterial({ color: 0x445533 });
+makeBox(1.85, 1.65, 4.50, jeepMat,
+  xOffset + 1.20 + 2.40 + 1.10 + 0.925, 0.825, 0);
+
+// === ORBIT CONTROLS (manual implementation) ===
+let isDragging = false;
+let isRightDragging = false;
+let prevMouse = { x: 0, y: 0 };
+let spherical = { theta: -Math.PI/4, phi: Math.PI/3.5, radius: 22 };
+let target = new THREE.Vector3(0, 2, 0);
+
+function updateCamera() {
+  camera.position.set(
+    target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta),
+    target.y + spherical.radius * Math.cos(spherical.phi),
+    target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta)
+  );
+  camera.lookAt(target);
+}
+updateCamera();
+
+canvas.addEventListener('mousedown', e => {
+  if (e.button === 0) isDragging = true;
+  if (e.button === 2) isRightDragging = true;
+  prevMouse = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener('mouseup', () => { isDragging = false; isRightDragging = false; });
+canvas.addEventListener('mousemove', e => {
+  const dx = e.clientX - prevMouse.x;
+  const dy = e.clientY - prevMouse.y;
+  if (isDragging) {
+    spherical.theta -= dx * 0.005;
+    spherical.phi = Math.max(0.1, Math.min(Math.PI/2 - 0.05, spherical.phi - dy * 0.005));
+    updateCamera();
+  }
+  if (isRightDragging) {
+    const right = new THREE.Vector3();
+    const up = new THREE.Vector3(0,1,0);
+    right.crossVectors(camera.getWorldDirection(new THREE.Vector3()), up).normalize();
+    target.addScaledVector(right, -dx * 0.02);
+    target.y += dy * 0.02;
+    updateCamera();
+  }
+  prevMouse = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener('wheel', e => {
+  spherical.radius = Math.max(5, Math.min(50, spherical.radius + e.deltaY * 0.02));
+  updateCamera();
+});
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+// Touch support
+let lastTouch = null;
+canvas.addEventListener('touchstart', e => {
+  lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+});
+canvas.addEventListener('touchmove', e => {
+  if (!lastTouch) return;
+  const dx = e.touches[0].clientX - lastTouch.x;
+  const dy = e.touches[0].clientY - lastTouch.y;
+  spherical.theta -= dx * 0.005;
+  spherical.phi = Math.max(0.1, Math.min(Math.PI/2 - 0.05, spherical.phi - dy * 0.005));
+  updateCamera();
+  lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+});
+
+// Resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// === ANIMATE ===
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>
