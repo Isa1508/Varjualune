@@ -132,13 +132,27 @@ const zOffset = -LENGTH / 2;
 const xOffset = -WIDTH / 2;
 
 for (let z of postZPositions) {
-  // Left side (x=0)
+  // Left side
   makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
     xOffset + POST_W/2, EAVE_H/2, zOffset + z);
-  // Right side (x=WIDTH)
+  // Right side
   makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
     xOffset + WIDTH - POST_W/2, EAVE_H/2, zOffset + z);
 }
+
+// Explicit rear posts (REAR_Z = negative Z side)
+const REAR_POST_Z = zOffset + POST_W/2;
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + POST_W/2, EAVE_H/2, REAR_POST_Z);
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH - POST_W/2, EAVE_H/2, REAR_POST_Z);
+// Two intermediate rear posts at 1/3 and 2/3 of width
+// Place them slightly in front of rear wall so they're visible
+const rearMidZ = REAR_POST_Z + POST_W;
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH * 1/3, EAVE_H/2, rearMidZ);
+makeBox(POST_W, EAVE_H, POST_W, darkWoodMat,
+  xOffset + WIDTH * 2/3, EAVE_H/2, rearMidZ);
 
 // === TRAUF BEAMS (along length, on top of posts) ===
 // Left side
