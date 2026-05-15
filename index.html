@@ -22,7 +22,6 @@
     min-height: 100vh;
   }
 
-  /* === HEADER === */
   header {
     background: var(--mid);
     padding: 32px 24px 24px;
@@ -45,7 +44,6 @@
     text-transform: uppercase;
   }
 
-  /* === MAIN === */
   main {
     max-width: 920px;
     margin: 0 auto;
@@ -64,7 +62,7 @@
     text-transform: uppercase;
   }
 
-  /* === 3D PREVIEW === */
+  /* 3D preview */
   .model-preview {
     width: 100%;
     aspect-ratio: 16/9;
@@ -75,15 +73,8 @@
     border: 1px solid #d8cfc0;
     cursor: pointer;
     position: relative;
-    background: url('preview_3d.png') center/cover no-repeat, #1a1a2e;
+    background: url('preview_3d_v2.png') center/cover no-repeat, #1a1a2e;
     -webkit-tap-highlight-color: transparent;
-  }
-  .model-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0.85;
   }
   .model-preview .play-overlay {
     position: absolute;
@@ -93,39 +84,31 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    background: rgba(20,15,10,0.45);
+    background: rgba(20,15,10,0.35);
     transition: background 0.2s;
   }
-  .model-preview:active .play-overlay {
-    background: rgba(20,15,10,0.6);
-  }
+  .model-preview:active .play-overlay { background: rgba(20,15,10,0.55); }
   .play-btn {
-    width: 64px;
-    height: 64px;
+    width: 64px; height: 64px;
     border-radius: 50%;
     background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   }
-  .play-btn svg {
-    width: 28px; height: 28px; fill: white;
-    margin-left: 4px;
-  }
+  .play-btn svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
   .play-label {
-    color: white;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    color: white; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
   }
 
-  /* === DRAWINGS GRID === */
+  /* Drawings grid – 3 columns on wide, 1 on narrow */
   .drawings-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 600px) {
+    .drawings-grid { grid-template-columns: 1fr; }
   }
 
   .drawing-card {
@@ -137,7 +120,6 @@
     display: flex;
     flex-direction: column;
   }
-
   .drawing-thumb {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -156,70 +138,38 @@
     gap: 8px;
   }
   .card-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--mid);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.75rem; font-weight: 600; color: var(--mid);
+    letter-spacing: 0.1em; text-transform: uppercase;
   }
   .download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    font-size: 0.70rem;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    font-family: 'DM Sans', sans-serif;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--accent); color: white; text-decoration: none;
+    font-size: 0.70rem; font-weight: 600; padding: 5px 10px;
+    border-radius: 5px; letter-spacing: 0.06em; text-transform: uppercase;
+    white-space: nowrap; font-family: 'DM Sans', sans-serif;
   }
   .download-btn:active { background: #8b1a0a; }
   .download-btn svg { width: 12px; height: 12px; fill: white; }
 
-  /* === LIGHTBOX === */
+  /* Lightbox */
   .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(20,15,10,0.93);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
+    display: none; position: fixed; inset: 0;
+    background: rgba(20,15,10,0.93); z-index: 1000;
+    justify-content: center; align-items: center; padding: 16px;
   }
   .lightbox.active { display: flex; }
   .lightbox img {
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 6px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    max-width: 100%; max-height: 90vh;
+    border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
   }
   .lightbox-close {
-    position: absolute;
-    top: 14px;
-    right: 20px;
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
-    opacity: 0.8;
-    line-height: 1;
-    font-weight: 300;
+    position: absolute; top: 14px; right: 20px;
+    color: white; font-size: 2.5rem; cursor: pointer; opacity: 0.8; line-height: 1; font-weight: 300;
   }
   .lightbox-label {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #c0a880;
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+    color: #c0a880; font-size: 0.75rem; letter-spacing: 0.14em;
+    text-transform: uppercase; white-space: nowrap;
   }
 </style>
 </head>
@@ -231,7 +181,6 @@
 </header>
 
 <main>
-
   <p class="section-label">3D mudel</p>
   <div class="model-preview" onclick="window.location.href='3d.html'">
     <div class="play-overlay">
@@ -259,12 +208,25 @@
     </div>
 
     <div class="drawing-card">
-      <div class="drawing-thumb" onclick="openLightbox('kylgvaade.svg', 'Külgvaade')">
-        <img src="kylgvaade.svg" alt="Külgvaade">
+      <div class="drawing-thumb" onclick="openLightbox('kylgvaade_v2.svg', 'Külgvaade')">
+        <img src="kylgvaade_v2.svg" alt="Külgvaade">
       </div>
       <div class="card-footer">
         <span class="card-label">Külgvaade</span>
-        <a class="download-btn" href="kylgvaade.pdf" download="kylgvaade.pdf">
+        <a class="download-btn" href="kylgvaade_v2.pdf" download="kylgvaade.pdf">
+          <svg viewBox="0 0 16 16"><path d="M8 12l-4-4h2.5V2h3v6H12L8 12zm-5 2h10v1.5H3V14z"/></svg>
+          PDF
+        </a>
+      </div>
+    </div>
+
+    <div class="drawing-card">
+      <div class="drawing-thumb" onclick="openLightbox('tagakylg_v2.svg', 'Tagavaade')">
+        <img src="tagakylg_v2.svg" alt="Tagavaade">
+      </div>
+      <div class="card-footer">
+        <span class="card-label">Tagavaade</span>
+        <a class="download-btn" href="tagakylg_v2.pdf" download="tagavaade.pdf">
           <svg viewBox="0 0 16 16"><path d="M8 12l-4-4h2.5V2h3v6H12L8 12zm-5 2h10v1.5H3V14z"/></svg>
           PDF
         </a>
@@ -274,7 +236,6 @@
   </div>
 </main>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">&times;</span>
   <img id="lightbox-img" src="" alt="">
