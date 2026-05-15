@@ -36,9 +36,9 @@
   <!-- === TRAUF BEAM === -->
   <rect x="172" y="194" width="697" height="9" fill="#a07820" stroke="#5a4010" stroke-width="1"/>
 
-  <!-- === STIRNBALKEN (otspalk) vorne === -->
+  <!-- === STIRNBALKEN (otsapalk) vorne === -->
   <rect x="164" y="158" width="32" height="41" fill="#c08828" stroke="#7a5010" stroke-width="1.5"/>
-  <text x="180" y="152" text-anchor="middle" font-size="9" fill="#7a5010">otspalk 3,80 m</text>
+  <text x="180" y="152" text-anchor="middle" font-size="9" fill="#7a5010">otsapalk 3,80 m</text>
 
   <!-- === ROOF: x=147 to x=894 === -->
   <rect x="147" y="81" width="747" height="118" fill="#b03020" stroke="#7a1a08" stroke-width="1.5"/>
@@ -80,13 +80,13 @@
   <line x1="930" y1="81" x2="930" y2="470" stroke="#333" stroke-width="1"/>
   <line x1="923" y1="81" x2="937" y2="81" stroke="#333" stroke-width="1.5"/>
   <line x1="923" y1="470" x2="937" y2="470" stroke="#333" stroke-width="1.5"/>
-  <text x="948" y="279" text-anchor="middle" font-size="11" fill="#333" transform="rotate(90,948,279)">4,74 m (harja)</text>
+  <text x="948" y="279" text-anchor="middle" font-size="11" fill="#333" transform="rotate(90,948,279)"></text>
 
   <!-- Otspalk height -->
   <line x1="136" y1="158" x2="136" y2="470" stroke="#7a5010" stroke-width="1" stroke-dasharray="3,2"/>
   <line x1="129" y1="158" x2="143" y2="158" stroke="#7a5010" stroke-width="1.5"/>
   <line x1="129" y1="470" x2="143" y2="470" stroke="#7a5010" stroke-width="1.5"/>
-  <text x="122" y="317" text-anchor="middle" font-size="10" fill="#7a5010" transform="rotate(-90,122,317)">3,80 m (otspalk)</text>
+  <text x="122" y="317" text-anchor="middle" font-size="10" fill="#7a5010" transform="rotate(-90,122,317)">3,80 m (otsapalk)</text>
 
   <!-- Field spacing with post widths -->
   <line x1="172" y1="548" x2="869" y2="548" stroke="#666" stroke-width="0.8"/>
