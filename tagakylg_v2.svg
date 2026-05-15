@@ -21,6 +21,63 @@
   <rect x="8" y="490" width="984" height="15" fill="#c8b89a"/>
   <line x1="8" y1="490" x2="992" y2="490" stroke="#888" stroke-width="1.5"/>
 
+  <!-- === ZAUN (Aed) hinten, H=0,90m=74px, x=150..797 ===
+    Zaunoberkante y=416, Boden y=490
+    Unterer Längsbalken y=484, oberer Längsbalken y=418
+    Mittlerer Querriegel y=453
+    Diagonale Latten: ~45°, alle von links-unten nach rechts-oben
+    Lattenabstand ca. 38px, Lattenbreite 5px
+  -->
+  <!-- Unterer Längsbalken -->
+  <rect x="150" y="482" width="647" height="8" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+  <!-- Oberer Längsbalken -->
+  <rect x="150" y="416" width="647" height="8" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+  <!-- Mittlerer Querriegel -->
+  <rect x="150" y="450" width="647" height="7" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+
+  <!-- Diagonale Latten (links-unten nach rechts-oben, ~45°) -->
+  <!-- Latte geht von y=490 nach y=416, also 74px vertikal = 74px horizontal bei 45° -->
+  <!-- Startpunkte am Boden (y=490), Abstand 38px, von x=120 bis x=830 -->
+  <clipPath id="fenceClip">
+    <rect x="150" y="416" width="647" height="74"/>
+  </clipPath>
+  <g clip-path="url(#fenceClip)" stroke="#a09060" stroke-width="5" stroke-linecap="round">
+    <line x1="108" y1="490" x2="182" y2="416"/>
+    <line x1="132" y1="490" x2="206" y2="416"/>
+    <line x1="156" y1="490" x2="230" y2="416"/>
+    <line x1="180" y1="490" x2="254" y2="416"/>
+    <line x1="204" y1="490" x2="278" y2="416"/>
+    <line x1="228" y1="490" x2="302" y2="416"/>
+    <line x1="252" y1="490" x2="326" y2="416"/>
+    <line x1="276" y1="490" x2="350" y2="416"/>
+    <line x1="300" y1="490" x2="374" y2="416"/>
+    <line x1="324" y1="490" x2="398" y2="416"/>
+    <line x1="348" y1="490" x2="422" y2="416"/>
+    <line x1="372" y1="490" x2="446" y2="416"/>
+    <line x1="396" y1="490" x2="470" y2="416"/>
+    <line x1="420" y1="490" x2="494" y2="416"/>
+    <line x1="444" y1="490" x2="518" y2="416"/>
+    <line x1="468" y1="490" x2="542" y2="416"/>
+    <line x1="492" y1="490" x2="566" y2="416"/>
+    <line x1="516" y1="490" x2="590" y2="416"/>
+    <line x1="540" y1="490" x2="614" y2="416"/>
+    <line x1="564" y1="490" x2="638" y2="416"/>
+    <line x1="588" y1="490" x2="662" y2="416"/>
+    <line x1="612" y1="490" x2="686" y2="416"/>
+    <line x1="636" y1="490" x2="710" y2="416"/>
+    <line x1="660" y1="490" x2="734" y2="416"/>
+    <line x1="684" y1="490" x2="758" y2="416"/>
+    <line x1="708" y1="490" x2="782" y2="416"/>
+    <line x1="732" y1="490" x2="806" y2="416"/>
+    <line x1="756" y1="490" x2="830" y2="416"/>
+  </g>
+
+  <!-- Zaunhöhe Bemaßung -->
+  <line x1="120" y1="416" x2="120" y2="490" stroke="#888" stroke-width="0.8"/>
+  <line x1="113" y1="416" x2="127" y2="416" stroke="#888" stroke-width="1"/>
+  <line x1="113" y1="490" x2="127" y2="490" stroke="#888" stroke-width="1"/>
+  <text x="105" y="457" text-anchor="middle" font-size="9" fill="#888" transform="rotate(-90,105,457)">0,90 m (aed)</text>
+
   <!-- === POSTS === -->
   <rect x="150" y="219" width="16" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
   <rect x="781" y="219" width="16" height="271" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
