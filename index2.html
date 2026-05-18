@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Varjualune Lehtmetsa</title>
+<title>Varjualune Lehtmetsa – Alternatiiv 2</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -19,7 +19,6 @@
   header {
     background: var(--mid); padding: 32px 24px 24px;
     text-align: center; border-bottom: 4px solid var(--accent);
-    position: relative;
   }
   header h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); color: var(--cream); font-weight: 700; letter-spacing: -0.01em; }
   header .sub { color: #c0a880; font-size: 0.78rem; margin-top: 6px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; }
@@ -60,7 +59,7 @@
     width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden;
     box-shadow: 0 4px 28px rgba(0,0,0,0.15); margin-bottom: 32px;
     border: 1px solid #d8cfc0; cursor: pointer; position: relative;
-    background: url('preview_3d2.png') center/cover no-repeat, #1a1a2e; -webkit-tap-highlight-color: transparent;
+    background: #1a1a2e; -webkit-tap-highlight-color: transparent;
   }
   .model-preview .play-overlay {
     position: absolute; inset: 0; display: flex; flex-direction: column;
@@ -129,28 +128,39 @@
   .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
   .lightbox-close { position: absolute; top: 14px; right: 20px; color: white; font-size: 2.5rem; cursor: pointer; opacity: 0.8; line-height: 1; font-weight: 300; }
   .lightbox-label { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: #c0a880; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
-
-  /* corner link */
-  .corner-link {
-    position: absolute; top: 18px; right: 20px;
-    background: rgba(255,255,255,0.12); color: var(--cream);
-    text-decoration: none; font-size: 0.73rem; font-weight: 500;
-    padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
-    letter-spacing: 0.06em; white-space: nowrap; transition: background 0.2s;
-  }
-  .corner-link:hover { background: rgba(255,255,255,0.22); }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Varjualune Lehtmetsa</h1>
-  <p class="sub">2026</p>
+  <p class="sub">2026 · Alternatiiv 2</p>
   <div class="badge">Asymmetriline katus</div>
-  <a href="index_alt1.html" class="corner-link">Sümmeetriline alternatiiv →</a>
 </header>
 
 <main>
+  <a href="index.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 3L5 8l5 5"/></svg>
+    ← Tagasi põhiprojekti juurde
+  </a>
+
+  <p class="section-label">Põhiandmed – Alt. 2 vs. originaal</p>
+  <div class="key-data" style="margin-bottom:28px;">
+    <table>
+      <tr><th>Parameeter</th><th>Originaal (sümmeetriline)</th><th>Alt. 2 (asümmeetriline)</th></tr>
+      <tr><td>Harja asukoht</td><td>Keskel (3,90 m vasakult)</td><td class="changed">2,55 m vasakult (womo kohal)</td></tr>
+      <tr><td>Harjakõrgus</td><td>4,74 m</td><td class="changed">4,25 m (−49 cm)</td></tr>
+      <tr><td>Vasak räästas (Wohnmobil pool)</td><td>3,30 m</td><td class="changed">3,27 m (−3 cm)</td></tr>
+      <tr><td>Parem räästas (Jeep pool)</td><td>3,30 m</td><td class="changed">2,24 m (−106 cm)</td></tr>
+      <tr><td>Katuse kalle</td><td>21° (mõlemal poolel)</td><td class="same">21° (mõlemal poolel)</td></tr>
+      <tr><td>Pikkus</td><td>8,50 m</td><td class="same">8,50 m</td></tr>
+      <tr><td>Valguslaius</td><td>7,50 m</td><td class="same">7,50 m</td></tr>
+      <tr><td>Postide arv</td><td>10</td><td class="same">10</td></tr>
+      <tr><td>Vaba kõrgus Wohnmobili kohal</td><td>≥ 4,22 m</td><td class="same">3,79 m (+39 cm) ✓</td></tr>
+      <tr><td>Vaba kõrgus Jeep kohal</td><td>≥ 3,70 m</td><td class="same">2,61 m ✓</td></tr>
+    </table>
+  </div>
+
   <p class="section-label">3D mudel</p>
   <div class="model-preview" onclick="window.location.href='3d2.html'">
     <div class="play-overlay">
@@ -204,10 +214,6 @@
     </div>
 
   </div>
-
-  <p style="text-align:center; margin-top:32px;">
-    <a href="vergleich.html" style="color:#888; font-size:0.75rem; text-decoration:none; letter-spacing:0.08em; border-bottom:1px solid #ccc; padding-bottom:1px;">Variantide võrdlus →</a>
-  </p>
 </main>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">

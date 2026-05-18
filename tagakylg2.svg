@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1000" height="640" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="473" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">VARJUALUNE ALT. 2 – TAGAVAADE</text>
+  <text x="473" y="48" text-anchor="middle" font-size="11" fill="#555">Valguslaius 7,50 m | Vasak räästas 2,24 m (Jeep) | Parem räästas 3,27 m (WoMo) | Harjakõrgus 4,25 m | 21°</text>
+
+  <!--
+    REAR VIEW = MIRRORED vs. front view. WoMo side is now on the RIGHT.
+    Scale: 82px/m. Ground y=490.
+    Outer left (Jeep):  x=150 w=16  h=2.24m  y_top=306
+    Outer right (WoMo): x=781 w=16  h=3.27m  y_top=222
+    Mid-left (Jeep mid): x=371 w=13 h=2.24m  y_top=306   (mirrored from x=576 in front)
+    Firstständer:  x=580 w=9  h=4.25m  y_top=141
+      (5.25m from left outer = 150+5.25×82 = 581 → x=580)
+
+    CROSS BEAMS (horizontal, no incline):
+      Lower at 2.24m (y=298–306): FULL WIDTH x=150 → x=797
+      Upper at 3.27m (y=214–222): Firstständer → right outer  x=580 → x=797 (width 217px)
+
+    ROOF (mirrored):
+      Ridge at x=588 (= 797−2.55×82): y=141
+      Left overhang (Jeep side):  x=125, y=315
+      Right overhang (WoMo side): x=822, y=232
+      Left panel (shallow, Jeep):  (125,315)→(588,141) 
+      Right panel (steep, WoMo):   (588,141)→(822,232)
+
+    KOPFBÄNDER 45°, 66px legs, 66px below post top:
+      Jeep outer  → right:             (166,372)→(232,306)
+      Jeep mid    → left:              (371,372)→(305,306)
+      Jeep mid    → right:             (384,372)→(450,306)
+      Firstständer→ left at 2.24m:     (580,372)→(514,306)
+      Firstständer→ right at 3.27m:    (589,288)→(655,222)
+      WoMo outer  → left at 3.27m:     (781,288)→(715,222)
+  -->
+
+  <!-- Ground -->
+  <rect x="8" y="490" width="984" height="18" fill="#c8b89a"/>
+  <line x1="8" y1="490" x2="992" y2="490" stroke="#888" stroke-width="1.5"/>
+
+  <!-- === FENCE (full width, behind posts) === -->
+  <rect x="150" y="416" width="647" height="8" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+  <rect x="150" y="450" width="647" height="7" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+  <rect x="150" y="480" width="647" height="8" fill="#a09060" stroke="#6a5a30" stroke-width="1"/>
+  <clipPath id="fc2"><rect x="150" y="416" width="647" height="74"/></clipPath>
+  <g clip-path="url(#fc2)" stroke="#a09060" stroke-width="5" stroke-linecap="round">
+    <line x1="108" y1="490" x2="182" y2="416"/><line x1="132" y1="490" x2="206" y2="416"/>
+    <line x1="156" y1="490" x2="230" y2="416"/><line x1="180" y1="490" x2="254" y2="416"/>
+    <line x1="204" y1="490" x2="278" y2="416"/><line x1="228" y1="490" x2="302" y2="416"/>
+    <line x1="252" y1="490" x2="326" y2="416"/><line x1="276" y1="490" x2="350" y2="416"/>
+    <line x1="300" y1="490" x2="374" y2="416"/><line x1="324" y1="490" x2="398" y2="416"/>
+    <line x1="348" y1="490" x2="422" y2="416"/><line x1="372" y1="490" x2="446" y2="416"/>
+    <line x1="396" y1="490" x2="470" y2="416"/><line x1="420" y1="490" x2="494" y2="416"/>
+    <line x1="444" y1="490" x2="518" y2="416"/><line x1="468" y1="490" x2="542" y2="416"/>
+    <line x1="492" y1="490" x2="566" y2="416"/><line x1="516" y1="490" x2="590" y2="416"/>
+    <line x1="540" y1="490" x2="614" y2="416"/><line x1="564" y1="490" x2="638" y2="416"/>
+    <line x1="588" y1="490" x2="662" y2="416"/><line x1="612" y1="490" x2="686" y2="416"/>
+    <line x1="636" y1="490" x2="710" y2="416"/><line x1="660" y1="490" x2="734" y2="416"/>
+    <line x1="684" y1="490" x2="758" y2="416"/><line x1="708" y1="490" x2="782" y2="416"/>
+    <line x1="732" y1="490" x2="806" y2="416"/><line x1="756" y1="490" x2="830" y2="416"/>
+  </g>
+  <line x1="120" y1="416" x2="120" y2="490" stroke="#888" stroke-width="0.8"/>
+  <line x1="113" y1="416" x2="127" y2="416" stroke="#888" stroke-width="1"/>
+  <line x1="113" y1="490" x2="127" y2="490" stroke="#888" stroke-width="1"/>
+  <text x="105" y="457" text-anchor="middle" font-size="9" fill="#888" transform="rotate(-90,105,457)">0,90 m (aed)</text>
+
+  <!-- === POSTS === -->
+  <!-- Outer left (Jeep, 2.24m) -->
+  <rect x="150" y="306" width="16" height="184" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+  <!-- Mid-left (Jeep mid, 2.24m) -->
+  <rect x="391" y="222" width="13" height="268" fill="#8B6914" stroke="#5a4010" stroke-width="1.2"/>
+  <!-- Firstständer (4.25m) -->
+  <rect x="580" y="141" width="9"  height="349" fill="#8B6914" stroke="#5a4010" stroke-width="1.2"/>
+  <!-- Outer right (WoMo, 3.27m) -->
+  <rect x="781" y="222" width="16" height="268" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+
+  <!-- === TWO HORIZONTAL REAR CROSS BEAMS === -->
+  <!-- LOWER at 2.24m: FULL WIDTH (all posts) -->
+  <rect x="150" y="313" width="647" height="9" fill="#a07820" stroke="#5a4010" stroke-width="1"/>
+  <!-- UPPER at 3.27m: Firstständer → WoMo right outer only -->
+  <rect x="391" y="227" width="406" height="9" fill="#a07820" stroke="#5a4010" stroke-width="1"/>
+
+  <!-- Beam labels -->
+  <text x="473" y="292" text-anchor="middle" font-size="9" fill="#7a5010" font-style="italic">Alumine tagabalken 2,24 m – täislaius</text>
+  <text x="688" y="208" text-anchor="middle" font-size="9" fill="#7a5010" font-style="italic">Ülemine tagabalken 3,27 m</text>
+
+  <!-- === KOPFBÄNDER === -->
+  <!-- Jeep outer → right (at 2.24m) -->
+    <!-- Jeep mid → left (at 2.24m) -->
+  
+  <!-- Jeep mid → right (at 2.24m) -->
+  
+  <!-- Firstständer → left at 2.24m -->
+  
+  <!-- Firstständer → right at 3.27m -->
+  
+  <!-- WoMo outer → left at 3.27m -->
+  
+
+
+  <!-- Kopfbänder – unterer Balken (center y=317): Außenpfosten links + rechts -->
+  <line x1="166" y1="383" x2="232" y2="317" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <line x1="781" y1="383" x2="715" y2="317" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <!-- Kopfbänder – oberer Balken (center y=231): Innenpfosten, Firstständer (beide), WoMo-Außen -->
+  <line x1="404" y1="297" x2="470" y2="231" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <line x1="580" y1="297" x2="514" y2="231" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <line x1="589" y1="297" x2="655" y2="231" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <line x1="781" y1="297" x2="715" y2="231" stroke="#7a5028" stroke-width="10" stroke-linecap="round"/>
+  <!-- === ROOF (mirrored) === -->
+  <!-- Left panel: Jeep side, long shallow slope (125,315)→(588,141) -->
+  <polygon points="125,315 588,141 588,153 125,327" fill="#922a1a" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Right panel: WoMo side, short steep slope (588,141)→(822,232) -->
+  <polygon points="588,141 822,232 822,244 588,153" fill="#b03020" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Ridge cap -->
+  <rect x="582" y="137" width="12" height="18" fill="#7a1a08"/>
+
+  <!-- Overhang dims -->
+  <line x1="125" y1="345" x2="150" y2="345" stroke="#888" stroke-width="0.8"/>
+  <line x1="125" y1="339" x2="125" y2="351" stroke="#888" stroke-width="1"/>
+  <line x1="150" y1="339" x2="150" y2="351" stroke="#888" stroke-width="1"/>
+  <text x="137" y="335" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+  <line x1="797" y1="258" x2="822" y2="258" stroke="#888" stroke-width="0.8"/>
+  <line x1="797" y1="252" x2="797" y2="264" stroke="#888" stroke-width="1"/>
+  <line x1="822" y1="252" x2="822" y2="264" stroke="#888" stroke-width="1"/>
+  <text x="809" y="248" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+
+  <!-- === DIMENSION LINES === -->
+  <!-- Left eave (Jeep) -->
+  <line x1="108" y1="306" x2="108" y2="490" stroke="#b03020" stroke-width="1"/>
+  <line x1="101" y1="306" x2="115" y2="306" stroke="#b03020" stroke-width="1.5"/>
+  <line x1="101" y1="490" x2="115" y2="490" stroke="#b03020" stroke-width="1.5"/>
+  <text x="92" y="401" text-anchor="middle" font-size="11" fill="#b03020" transform="rotate(-90,92,401)">2,24 m (Jeep räästas)</text>
+
+  <!-- Right eave (WoMo) -->
+  <line x1="840" y1="222" x2="840" y2="490" stroke="#b03020" stroke-width="1"/>
+  <line x1="833" y1="222" x2="847" y2="222" stroke="#b03020" stroke-width="1.5"/>
+  <line x1="833" y1="490" x2="847" y2="490" stroke="#b03020" stroke-width="1.5"/>
+  <text x="858" y="359" text-anchor="middle" font-size="11" fill="#b03020" transform="rotate(90,858,359)">3,27 m (WoMo räästas)</text>
+
+  <!-- Ridge height -->
+  <line x1="878" y1="141" x2="878" y2="490" stroke="#444" stroke-width="1"/>
+  <line x1="871" y1="141" x2="885" y2="141" stroke="#444" stroke-width="1.5"/>
+  <line x1="871" y1="490" x2="885" y2="490" stroke="#444" stroke-width="1.5"/>
+  <text x="896" y="318" text-anchor="middle" font-size="11" fill="#444" transform="rotate(90,896,318)">4,25 m (harjakõrgus)</text>
+
+  <!-- Ridge x from right (WoMo side = 2.55m) -->
+  <line x1="588" y1="118" x2="797" y2="118" stroke="#555" stroke-width="1"/>
+  <line x1="588" y1="112" x2="588" y2="124" stroke="#555" stroke-width="1.5"/>
+  <line x1="797" y1="112" x2="797" y2="124" stroke="#555" stroke-width="1.5"/>
+  <text x="692" y="112" text-anchor="middle" font-size="10" fill="#555">Harja nihkumine 2,55 m (WoMo küljelt)</text>
+
+  <!-- Outer width -->
+  <line x1="150" y1="548" x2="797" y2="548" stroke="#333" stroke-width="1"/>
+  <line x1="150" y1="541" x2="150" y2="555" stroke="#333" stroke-width="1.5"/>
+  <line x1="797" y1="541" x2="797" y2="555" stroke="#333" stroke-width="1.5"/>
+  <text x="473" y="565" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">ca. 7,80 m (välismõõt)</text>
+
+  <!-- Inner width -->
+  <line x1="166" y1="528" x2="781" y2="528" stroke="#555" stroke-width="1"/>
+  <line x1="166" y1="521" x2="166" y2="535" stroke="#555" stroke-width="1.5"/>
+  <line x1="781" y1="521" x2="781" y2="535" stroke="#555" stroke-width="1.5"/>
+  <text x="473" y="544" text-anchor="middle" font-size="11" fill="#555">7,50 m (valguslaius)</text>
+
+  <!-- Side labels -->
+  <text x="200" y="608" text-anchor="middle" font-size="11" fill="#555">Jeep pool</text>
+  <text x="750" y="608" text-anchor="middle" font-size="11" fill="#555">Wohnmobil pool</text>
+
+  <!-- Alt.2 badge -->
+  <rect x="860" y="14" width="122" height="40" rx="6" fill="#b03020"/>
+  <text x="921" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ALTERNATIIV 2</text>
+  <text x="921" y="47" text-anchor="middle" font-size="9" fill="#ffd0c0">Tagavaade (gespiegelt)</text>
+
+  <!-- Border -->
+  <rect x="8" y="8" width="984" height="624" fill="none" stroke="#aaa" stroke-width="1.5"/>
+
+</svg>

@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 650" width="1050" height="650" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1050" height="650" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="490" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">VARJUALUNE ALT. 2 – EESTVAADE</text>
+  <text x="490" y="48" text-anchor="middle" font-size="11" fill="#555">Valguslaius 7,50 m | Vasak räästas 3,27 m | Parem räästas 2,24 m | Harjakõrgus 4,25 m | Katuse kalle 21° | Pikkus 8,50 m</text>
+
+  <!--
+    Scale: 82px/m. Ground y=490.
+    Left eave:  3.27m = 268px → y=222
+    Right eave: 2.24m = 184px → y=306
+    Ridge:      4.25m = 349px → y=141
+    Ridge x: 150 + 2.55×82 = 359  (over WoMo centre)
+
+    Posts: outer-left x=150 w=16, outer-right inner=781 outer=797 w=16
+    Mid posts (rear, 1/3 and 2/3 of inner width):
+      Left-mid:  x=371 h=2.90m top y=252
+      Right-mid: x=576 h=2.57m top y=279
+
+    WoMo: left x=264 right x=461 top y=211 (3.40m)
+    Jeep: left x=551 right x=703 top y=355 (1.65m)
+
+    Roof overhangs 0.30m=25px each side.
+    Left overhang (x=125): y = 222 + 25/209×(141-222) = 222 - 9.7 ≈ 212  → below eave
+    Wait: overhang extends OUTWARD from post so height goes below left eave:
+      slope from ridge (359,141) to left eave (150,222), extended to x=125:
+      y = 141 + (125-359)/(150-359)×(222-141) = 141 + (-234)/(-209)×81 = 141+90.7 = 232
+    Right overhang (x=822):
+      slope from ridge (359,141) to right eave (797,306), extended to x=822:
+      y = 141 + (822-359)/(797-359)×(306-141) = 141+463/438×165 = 141+174 = 315
+  -->
+
+  <!-- Ground -->
+  <rect x="8" y="490" width="1034" height="18" fill="#c8b89a"/>
+  <line x1="8" y1="490" x2="1042" y2="490" stroke="#888" stroke-width="1.5"/>
+
+  <!-- === VEHICLES === -->
+  <!-- Wohnmobil -->
+  <rect x="264" y="211" width="197" height="279" fill="#ddeeff" stroke="#6688aa" stroke-width="1.5"/>
+  <text x="362" y="355" text-anchor="middle" font-size="10" fill="#446688">Wohnmobil</text>
+  <text x="362" y="369" text-anchor="middle" font-size="9" fill="#446688">2,40 × 3,40 m</text>
+  <!-- WoMo height dashed line -->
+  <line x1="246" y1="211" x2="246" y2="490" stroke="#6688aa" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <line x1="241" y1="211" x2="251" y2="211" stroke="#6688aa" stroke-width="1.5"/>
+
+  <!-- Jeep -->
+  <rect x="551" y="355" width="152" height="135" fill="#d0d8c0" stroke="#556644" stroke-width="1.5"/>
+  <text x="627" y="425" text-anchor="middle" font-size="10" fill="#445533">Jeep</text>
+  <text x="627" y="439" text-anchor="middle" font-size="9" fill="#445533">1,85 × 1,65 m</text>
+
+  <!-- === POSTS === -->
+  <!-- Left outer (tall, 3.27m) -->
+  <rect x="150" y="222" width="16" height="268" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+  <!-- Right outer (short, 2.24m) -->
+  <rect x="781" y="306" width="16" height="184" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
+  <!-- Mid-left rear: replaced by Firstständer at x=355 -->
+  <!-- Mid-right rear (2.24m, supports right cross beam) -->
+  <rect x="556" y="222" width="13" height="268" fill="#9a7218" stroke="#5a4010" stroke-width="1" opacity="0.65"/>
+
+  <!-- TWO horizontal rear cross beams (shown faintly, seen through carport from front) -->
+  <!-- Upper rear beam at 3.27m: left outer post → roof slope intersection -->
+  <rect x="150" y="227" width="406" height="9" fill="#a07820" stroke="#5a4010" stroke-width="0.8" opacity="0.45"/>
+  <!-- Lower rear beam at 2.24m: FULL WIDTH left outer → right outer -->
+  <rect x="150" y="313" width="647" height="9" fill="#a07820" stroke="#5a4010" stroke-width="0.8" opacity="0.45"/>
+  <!-- Firstständer (rear ridge support post) visible in background -->
+  <rect x="355" y="141" width="9" height="349" fill="#8B6914" stroke="#5a4010" stroke-width="0.8" opacity="0.35"/>
+
+  <!-- === KOPFBÄNDER (45°, 0.80m=66px, starts 66px below eave) === -->
+  <!-- Left outer: KB to right, from y=288 → y=222, dx=66 -->
+    <!-- Right outer: KB to left, from y=372 → y=306, dx=-66 -->
+  
+  <!-- Mid-right rear kopfbänder (at 2.24m level) -->
+  
+  
+
+
+  <!-- Kopfbänder – oberer Balken (center y=231): WoMo-Außen, Firstständer (beide), Jeep-Innen -->
+  <line x1="166" y1="297" x2="232" y2="231" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <line x1="355" y1="297" x2="289" y2="231" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <line x1="364" y1="297" x2="430" y2="231" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <line x1="556" y1="297" x2="490" y2="231" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <!-- Kopfbänder – unterer Balken (center y=317): Außenpfosten links + rechts -->
+  <line x1="166" y1="383" x2="232" y2="317" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <line x1="781" y1="383" x2="715" y2="317" stroke="#7a5028" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+  <!-- === ROOF === -->
+  <!-- Left slope -->
+  <polygon points="125,232 359,141 359,153 125,244" fill="#b03020" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Right slope -->
+  <polygon points="359,141 822,315 822,327 359,153" fill="#922a1a" stroke="#7a1a08" stroke-width="1.5"/>
+  <!-- Ridge cap -->
+  <rect x="353" y="137" width="12" height="18" fill="#7a1a08"/>
+
+  <!-- === CLEARANCE LINES over WoMo === -->
+  <!-- Roof height at WoMo left edge x=264: y≈178 (3.80m) -->
+  <!-- Roof height at WoMo right edge x=461: y≈179 (3.79m) -->
+  <line x1="264" y1="178" x2="264" y2="211" stroke="#22aa44" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <line x1="461" y1="179" x2="461" y2="211" stroke="#22aa44" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <line x1="264" y1="175" x2="461" y2="176" stroke="#22aa44" stroke-width="1.5"/>
+  <line x1="264" y1="169" x2="264" y2="181" stroke="#22aa44" stroke-width="1.5"/>
+  <line x1="461" y1="169" x2="461" y2="182" stroke="#22aa44" stroke-width="1.5"/>
+  <text x="362" y="167" text-anchor="middle" font-size="9" fill="#22aa44" font-weight="bold">+39 cm Spielraum (Dach 3,79 m)</text>
+
+  <!-- === DIMENSION LINES === -->
+
+  <!-- Left eave height -->
+  <line x1="108" y1="222" x2="108" y2="490" stroke="#b03020" stroke-width="1"/>
+  <line x1="101" y1="222" x2="115" y2="222" stroke="#b03020" stroke-width="1.5"/>
+  <line x1="101" y1="490" x2="115" y2="490" stroke="#b03020" stroke-width="1.5"/>
+  <text x="92" y="359" text-anchor="middle" font-size="11" fill="#b03020" transform="rotate(-90,92,359)">3,27 m (vasak räästas)</text>
+
+  <!-- Right eave height -->
+  <line x1="840" y1="306" x2="840" y2="490" stroke="#b03020" stroke-width="1"/>
+  <line x1="833" y1="306" x2="847" y2="306" stroke="#b03020" stroke-width="1.5"/>
+  <line x1="833" y1="490" x2="847" y2="490" stroke="#b03020" stroke-width="1.5"/>
+  <text x="858" y="401" text-anchor="middle" font-size="11" fill="#b03020" transform="rotate(90,858,401)">2,24 m (parem räästas)</text>
+
+  <!-- Ridge height -->
+  <line x1="880" y1="141" x2="880" y2="490" stroke="#444" stroke-width="1"/>
+  <line x1="873" y1="141" x2="887" y2="141" stroke="#444" stroke-width="1.5"/>
+  <line x1="873" y1="490" x2="887" y2="490" stroke="#444" stroke-width="1.5"/>
+  <text x="898" y="318" text-anchor="middle" font-size="11" fill="#444" transform="rotate(90,898,318)">4,25 m (harjakõrgus)</text>
+
+  <!-- Ridge x-position from left -->
+  <line x1="150" y1="118" x2="359" y2="118" stroke="#555" stroke-width="1"/>
+  <line x1="150" y1="112" x2="150" y2="124" stroke="#555" stroke-width="1.5"/>
+  <line x1="359" y1="112" x2="359" y2="124" stroke="#555" stroke-width="1.5"/>
+  <text x="254" y="113" text-anchor="middle" font-size="10" fill="#555">Harja x = 2,55 m</text>
+
+  <!-- Outer width -->
+  <line x1="150" y1="540" x2="797" y2="540" stroke="#333" stroke-width="1"/>
+  <line x1="150" y1="533" x2="150" y2="547" stroke="#333" stroke-width="1.5"/>
+  <line x1="797" y1="533" x2="797" y2="547" stroke="#333" stroke-width="1.5"/>
+  <text x="473" y="557" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">ca. 7,80 m (välismõõt)</text>
+
+  <!-- Inner width -->
+  <line x1="166" y1="520" x2="781" y2="520" stroke="#555" stroke-width="1"/>
+  <line x1="166" y1="513" x2="166" y2="527" stroke="#555" stroke-width="1.5"/>
+  <line x1="781" y1="513" x2="781" y2="527" stroke="#555" stroke-width="1.5"/>
+  <text x="473" y="536" text-anchor="middle" font-size="11" fill="#555">7,50 m (valguslaius)</text>
+
+  <!-- Vehicle bay widths -->
+  <line x1="166" y1="572" x2="797" y2="572" stroke="#777" stroke-width="0.8"/>
+  <line x1="166" y1="566" x2="166" y2="578" stroke="#777" stroke-width="1"/>
+  <line x1="264" y1="566" x2="264" y2="578" stroke="#777" stroke-width="1"/>
+  <line x1="461" y1="566" x2="461" y2="578" stroke="#777" stroke-width="1"/>
+  <line x1="551" y1="566" x2="551" y2="578" stroke="#777" stroke-width="1"/>
+  <line x1="703" y1="566" x2="703" y2="578" stroke="#777" stroke-width="1"/>
+  <line x1="781" y1="566" x2="781" y2="578" stroke="#777" stroke-width="1"/>
+  <text x="215" y="590" text-anchor="middle" font-size="9" fill="#888">1,20 m</text>
+  <text x="362" y="590" text-anchor="middle" font-size="9" fill="#446688">2,40 m</text>
+  <text x="506" y="590" text-anchor="middle" font-size="9" fill="#888">1,10 m</text>
+  <text x="627" y="590" text-anchor="middle" font-size="9" fill="#445533">1,85 m</text>
+  <text x="742" y="590" text-anchor="middle" font-size="9" fill="#888">0,95 m</text>
+
+  <!-- Overhang annotations -->
+  <line x1="125" y1="470" x2="150" y2="470" stroke="#888" stroke-width="0.8"/>
+  <line x1="125" y1="464" x2="125" y2="476" stroke="#888" stroke-width="1"/>
+  <line x1="150" y1="464" x2="150" y2="476" stroke="#888" stroke-width="1"/>
+  <text x="137" y="460" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+  <line x1="797" y1="470" x2="822" y2="470" stroke="#888" stroke-width="0.8"/>
+  <line x1="797" y1="464" x2="797" y2="476" stroke="#888" stroke-width="1"/>
+  <line x1="822" y1="464" x2="822" y2="476" stroke="#888" stroke-width="1"/>
+  <text x="809" y="460" text-anchor="middle" font-size="9" fill="#888">0,30 m</text>
+
+  <!-- Alt.2 badge -->
+  <rect x="910" y="14" width="122" height="40" rx="6" fill="#b03020"/>
+  <text x="971" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ALTERNATIIV 2</text>
+  <text x="971" y="47" text-anchor="middle" font-size="9" fill="#ffd0c0">Asymmetriline katus</text>
+
+  <!-- WoMo height annotation -->
+  <text x="234" y="350" text-anchor="middle" font-size="9" fill="#446688" transform="rotate(-90,234,350)">3,40 m</text>
+
+  <!-- Border -->
+  <rect x="8" y="8" width="1034" height="634" fill="none" stroke="#aaa" stroke-width="1.5"/>
+
+</svg>
