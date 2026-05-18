@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Varjualune Lehtmetsa – Originaalprojekt</title>
+<title>Varjualune Lehtmetsa – Sümmeetriline katus</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -173,23 +173,42 @@
     text-transform: uppercase; white-space: nowrap;
   }
 
-  /* corner link */
-  .corner-link {
-    position: absolute; top: 18px; right: 20px;
-    background: rgba(255,255,255,0.12); color: var(--cream);
-    text-decoration: none; font-size: 0.73rem; font-weight: 500;
-    padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
-    letter-spacing: 0.06em; white-space: nowrap; transition: background 0.2s;
+  /* hamburger menu */
+  .hamburger {
+    position: absolute; top: 14px; left: 16px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px; padding: 8px 10px; cursor: pointer;
+    display: flex; flex-direction: column; gap: 5px; z-index: 100;
   }
-  .corner-link:hover { background: rgba(255,255,255,0.22); }
+  .hamburger span { display: block; width: 20px; height: 2px; background: var(--cream); border-radius: 2px; }
+  .nav-menu {
+    display: none; position: absolute; top: 58px; left: 16px;
+    background: var(--mid); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 6px 0; min-width: 210px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4); z-index: 200;
+  }
+  .nav-menu.open { display: block; }
+  .nav-menu a {
+    display: block; padding: 10px 18px;
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    transition: background 0.15s;
+  }
+  .nav-menu a:hover { background: rgba(255,255,255,0.1); }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Varjualune Lehtmetsa</h1>
-  <p>2026 · Originaalprojekt (sümmeetriline)</p>
-  <a href="index.html" class="corner-link">Alternatiiv 2 →</a>
+  <p>2026 · Sümmeetriline katus</p>
+  <div class="hamburger" onclick="toggleMenu()" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <a href="https://isa1508.github.io/Varjualune/index.html">Asümmeetriline katus →</a>
+    <a href="vergleich.html">Variantide võrdlus →</a>
+  </div>
 </header>
 
 <main>
@@ -266,5 +285,17 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
+
+<script>
+
+  function toggleMenu() {
+    document.getElementById('navMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#burger') && !e.target.closest('#navMenu')) {
+      document.getElementById('navMenu').classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>

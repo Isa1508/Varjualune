@@ -130,24 +130,42 @@
   .lightbox-close { position: absolute; top: 14px; right: 20px; color: white; font-size: 2.5rem; cursor: pointer; opacity: 0.8; line-height: 1; font-weight: 300; }
   .lightbox-label { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: #c0a880; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
 
-  /* corner link */
-  .corner-link {
-    position: absolute; top: 18px; right: 20px;
-    background: rgba(255,255,255,0.12); color: var(--cream);
-    text-decoration: none; font-size: 0.73rem; font-weight: 500;
-    padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
-    letter-spacing: 0.06em; white-space: nowrap; transition: background 0.2s;
+  /* hamburger menu */
+  .hamburger {
+    position: absolute; top: 14px; left: 16px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px; padding: 8px 10px; cursor: pointer;
+    display: flex; flex-direction: column; gap: 5px; z-index: 100;
   }
-  .corner-link:hover { background: rgba(255,255,255,0.22); }
+  .hamburger span { display: block; width: 20px; height: 2px; background: var(--cream); border-radius: 2px; }
+  .nav-menu {
+    display: none; position: absolute; top: 58px; left: 16px;
+    background: var(--mid); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 6px 0; min-width: 210px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4); z-index: 200;
+  }
+  .nav-menu.open { display: block; }
+  .nav-menu a {
+    display: block; padding: 10px 18px;
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    transition: background 0.15s;
+  }
+  .nav-menu a:hover { background: rgba(255,255,255,0.1); }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Varjualune Lehtmetsa</h1>
-  <p class="sub">2026</p>
-  <div class="badge">Asymmetriline katus</div>
-  <a href="index_alt1.html" class="corner-link">Sümmeetriline alternatiiv →</a>
+  <p class="sub">2026 · Asümmeetriline katus</p>
+  <div class="hamburger" onclick="toggleMenu()" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <a href="https://isa1508.github.io/Varjualune/index_alt1.html">Sümmeetriline katus →</a>
+    <a href="vergleich.html">Variantide võrdlus →</a>
+  </div>
 </header>
 
 <main>
@@ -157,15 +175,15 @@
       <div class="play-btn">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </div>
-      <span class="play-label">Ava 3D mudel (Alt. 2)</span>
+      <span class="play-label">Ava 3D mudel</span>
     </div>
   </div>
 
-  <p class="section-label">Joonised – Alternatiiv 2</p>
+  <p class="section-label">Joonised</p>
   <div class="drawings-grid">
 
     <div class="drawing-card">
-      <div class="drawing-thumb" onclick="openLightbox('eestvaade2.svg','Eestvaade – Alt. 2')">
+      <div class="drawing-thumb" onclick="openLightbox('eestvaade2.svg','Eestvaade')">
         <img src="eestvaade2.svg" alt="Eestvaade Alt.2">
       </div>
       <div class="card-footer">
@@ -178,7 +196,7 @@
     </div>
 
     <div class="drawing-card">
-      <div class="drawing-thumb" onclick="openLightbox('kylgvaade2.svg','Külgvaade – Alt. 2')">
+      <div class="drawing-thumb" onclick="openLightbox('kylgvaade2.svg','Külgvaade')">
         <img src="kylgvaade2.svg" alt="Külgvaade Alt.2">
       </div>
       <div class="card-footer">
@@ -191,7 +209,7 @@
     </div>
 
     <div class="drawing-card">
-      <div class="drawing-thumb" onclick="openLightbox('tagakylg2.svg','Tagavaade – Alt. 2')">
+      <div class="drawing-thumb" onclick="openLightbox('tagakylg2.svg','Tagavaade')">
         <img src="tagakylg2.svg" alt="Tagavaade Alt.2">
       </div>
       <div class="card-footer">
@@ -205,9 +223,6 @@
 
   </div>
 
-  <p style="text-align:center; margin-top:32px;">
-    <a href="vergleich.html" style="color:#888; font-size:0.75rem; text-decoration:none; letter-spacing:0.08em; border-bottom:1px solid #ccc; padding-bottom:1px;">Variantide võrdlus →</a>
-  </p>
 </main>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -226,6 +241,15 @@
     document.getElementById('lightbox').classList.remove('active');
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  function toggleMenu() {
+    document.getElementById('navMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#burger') && !e.target.closest('#navMenu')) {
+      document.getElementById('navMenu').classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>

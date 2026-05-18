@@ -16,12 +16,12 @@
     Posts outer right inner x=781, outer x=797
     Inner width: 7,50m = 615px
     Spacings:
-      left gap:  98px (1,20m) → WoMo left x=264
-      WoMo:     197px (2,40m) → WoMo right x=461
+      left gap:  98px (1,20m) → Matkaauto left x=264
+      Matkaauto:     197px (2,40m) → Matkaauto right x=461
       middle:    90px (1,10m) → Jeep left x=551
       Jeep:     152px (1,85m) → Jeep right x=703
       right gap: 78px (0,95m) → x=781
-    WoMo height: 3,40m=279px → top y=490-279=211
+    Matkaauto height: 3,40m=279px → top y=490-279=211
     Jeep height: 1,65m=135px → top y=355
     Ridge center x=473
   -->
@@ -115,7 +115,7 @@
   <text x="362" y="361" text-anchor="middle" font-size="11" fill="#2a5a80">B 2,40 m</text>
   <text x="362" y="377" text-anchor="middle" font-size="11" fill="#2a5a80">H 3,40 m</text>
 
-  <!-- WoMo height arrow -->
+  <!-- Matkaauto height arrow -->
   <line x1="248" y1="211" x2="248" y2="490" stroke="#3a6a9a" stroke-width="1" stroke-dasharray="3,2"/>
   <line x1="242" y1="211" x2="254" y2="211" stroke="#3a6a9a" stroke-width="1.5"/>
   <line x1="242" y1="490" x2="254" y2="490" stroke="#3a6a9a" stroke-width="1.5"/>

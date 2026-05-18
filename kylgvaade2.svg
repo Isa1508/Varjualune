@@ -4,7 +4,7 @@
   <rect width="1000" height="640" fill="#f5f2ed"/>
 
   <!-- Title -->
-  <text x="500" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">VARJUALUNE ALT. 2 – KÜLGVAADE</text>
+  <text x="500" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#222">VARJUALUNE – KÜLGVAADE</text>
   <text x="500" y="48" text-anchor="middle" font-size="11" fill="#555">Pikkus 8,50 m | Vasak räästas 3,27 m | Parem räästas 2,24 m | Harjakõrgus 4,25 m | Katuse kalle 21° | Katuse üleulatumine 0,30 m</text>
 
   <!--
@@ -12,12 +12,12 @@
     LENGTH 8.50m = 697px. Outer front x=172 w=16, outer rear x=869 w=16.
     Mid posts: x=404 x=637 (same spacing as original, 2.63m apart)
 
-    LEFT SIDE (WoMo side): Eave = 3.27m = 268px → y_eave_L = 470-268 = 202
+    LEFT SIDE (Matkaauto side): Eave = 3.27m = 268px → y_eave_L = 470-268 = 202
     RIGHT SIDE (Jeep side): Eave = 2.24m = 184px → y_eave_R = 470-184 = 286
     Ridge: 4.25m = 349px → y_ridge = 470-349 = 121
 
     Both side views shown stacked:
-      Top:    LEFT side view (WoMo side, tall posts 3.27m) – upper half of drawing
+      Top:    LEFT side view (Matkaauto side, tall posts 3.27m) – upper half of drawing
       Bottom: RIGHT side view (Jeep side, short posts 2.24m) – lower half
 
     We'll draw the left side view only (same as original kylgvaade concept) and annotate
@@ -30,7 +30,7 @@
   <rect x="100" y="470" width="840" height="15" fill="#c8b89a"/>
   <line x1="100" y1="470" x2="940" y2="470" stroke="#888" stroke-width="1.5"/>
 
-  <!-- === LEFT SIDE VIEW (WoMo side) === -->
+  <!-- === LEFT SIDE VIEW (Matkaauto side) === -->
   <!-- Posts at 3.27m = 202 y_top -->
   <rect x="172" y="202" width="16" height="268" fill="#8B6914" stroke="#5a4010" stroke-width="1.5"/>
   <rect x="404" y="202" width="16" height="268" fill="#8B6914" stroke="#5a4010" stroke-width="1.2"/>
@@ -63,8 +63,8 @@
 
   <!-- Annotation: right side eave is at 2.24m (not visible from this view) -->
   <rect x="500" y="58" width="380" height="42" rx="5" fill="#fff8e0" stroke="#cc8800" stroke-width="1.2"/>
-  <text x="690" y="74" text-anchor="middle" font-size="10" fill="#884400" font-weight="bold">Seitenansicht: linke Seite (Wohnmobil)</text>
-  <text x="690" y="91" text-anchor="middle" font-size="9.5" fill="#884400">Rechte Seite (Jeep): Traufe bei 2,24 m – dort tiefer hängend</text>
+  <text x="690" y="74" text-anchor="middle" font-size="10" fill="#884400" font-weight="bold">Külgvaade: vasak pool (Matkaauto)</text>
+  <text x="690" y="91" text-anchor="middle" font-size="9.5" fill="#884400">Parem pool (Jeep): räästas 2,24 m – madalam</text>
 
   <!-- === DIMENSION LINES === -->
 
@@ -133,8 +133,8 @@
 
   <!-- Alt.2 badge -->
   <rect x="8" y="14" width="122" height="40" rx="6" fill="#b03020"/>
-  <text x="69" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="white">ALTERNATIIV 2</text>
-  <text x="69" y="47" text-anchor="middle" font-size="9" fill="#ffd0c0">Asymmetriline katus</text>
+  <text x="69" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="white"></text>
+  <text x="69" y="47" text-anchor="middle" font-size="9" fill="#ffd0c0">Asümmeetriline katus</text>
 
   <!-- Border -->
   <rect x="8" y="8" width="984" height="624" fill="none" stroke="#aaa" stroke-width="1.5"/>
